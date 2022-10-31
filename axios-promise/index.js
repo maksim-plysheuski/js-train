@@ -1,4 +1,4 @@
-import {getImages} from "./service";
+import {createTasks, getImages} from "./service";
 
 const resultBlock = document.querySelector("#result")
 const pageNumberEl = document.querySelector("#page-number")
@@ -6,7 +6,12 @@ const clickMeButton = document.querySelector("#click-me")
 
 clickMeButton.addEventListener("click", () => {
     const promise = getImages(pageNumberEl.value)
-    promise.then()
+    promise.then(onDataReceived)
+})
+
+clickMeButton.addEventListener("click", () => {
+    const promise = createTasks("Hi")
+    promise.then(onDataReceived)
 })
 
 function onDataReceived(array) {
@@ -16,3 +21,4 @@ function onDataReceived(array) {
         document.querySelector("#result").appendChild(img)
     })
 }
+
